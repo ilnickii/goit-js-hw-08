@@ -17,14 +17,21 @@ if (storedState) {
 }
 
 form.addEventListener('submit', function(event) {
-  event.preventDefault();
 
-  localStorage.removeItem('feedback-form-state');
-  emailInput.value = '';
-  messageInput.value = '';
+  if (emailInput.value.length === 0 || messageInput.value.length === 0) {
+    return alert('Fill in all fields');
+  } else {
+    event.preventDefault();
 
-  const feedbackData = { email: emailInput.value, message: messageInput.value };
-  console.log(feedbackData);
+    localStorage.removeItem('feedback-form-state');
+  
+    const feedbackData = { email: emailInput.value, message: messageInput.value };
+    console.log(feedbackData);
+  
+    emailInput.value = '';
+    messageInput.value = '';
+  }
+ 
 });
 
 
